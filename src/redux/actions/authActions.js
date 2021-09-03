@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie';
 
 export const REGISTER = 'REGISTER';
+export const UPDATE_USER = 'UPDATE_USER';
 export const AUTH_FAILURE = 'AUTH_FAILURE';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
@@ -33,6 +34,30 @@ export const register = (info) => async(dispatch) => {
   };
 };
 
+export const updateUser = (info) => async(dispatch) => {
+  const config = {
+    method: 'PUT',
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${Cookies.get('token')}`
+    },
+    body: JSON.stringify(info)
+  };
+  const res = await fetch(`http://localhost:3000/api/users/${Cookies.get('id')}`, config);
+  const user = await res.json();
+  if (user.data !== undefined) {
+    dispatch({
+      type: UPDATE_USER,
+      payload: user.data,
+    });
+  } else {
+    dispatch({
+      type: AUTH_FAILURE,
+      payload: user.errors
+    });
+  };
+};
+
 export const login = (creds) => async(dispatch) => {
   let token = '';
   const config = {
@@ -45,7 +70,7 @@ export const login = (creds) => async(dispatch) => {
   const res = await fetch(`http://localhost:3000/api/login`, config);
   token = await res.headers.get('authorization')
   const user = await res.json();
-  if (user.data.id) {
+  if (user.data) {
     Cookies.set('token', token.split(' ')[1], {secure: true});
     Cookies.set('id', user.data.id, {secure: true});
     dispatch({
@@ -55,14 +80,21 @@ export const login = (creds) => async(dispatch) => {
   } else {
     dispatch({
       type: AUTH_FAILURE,
-      payload: user.errors
+      payload: user
     });
   };
 };
 
-export const logout = () => (dispatch) => {
+export const logout = () => async(dispatch) => {
+  const config = {
+    method: 'DELETE',
+    headers: {
+      "Authorization": `Bearer ${Cookies.get('token')}`
+    }
+  }
+  const res = await fetch('http://localhost:3000/api/logout', config);
   dispatch({
-    type: LOGOUT
+    type: LOGOUT,
   });
 };
 

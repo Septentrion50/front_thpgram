@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { REGISTER, LOGIN, LOGOUT, GET_USER, AUTH_FAILURE } from "redux/actions/authActions";
+import { REGISTER, UPDATE_USER, LOGIN, LOGOUT, GET_USER, AUTH_FAILURE } from "redux/actions/authActions";
 
 const initialState = {
   user: null,
@@ -9,6 +9,7 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case REGISTER:
+    case UPDATE_USER:
     case GET_USER:
     case LOGIN:
       return {
@@ -25,7 +26,7 @@ const authReducer = (state = initialState, action) => {
       Cookies.remove('id');
       return {
         ...state,
-        user: null
+        user: action.payload
       };
     default:
       return state;

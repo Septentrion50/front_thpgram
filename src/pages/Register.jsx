@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { register } from "redux/actions/authActions";
 
 const Register = () => {
@@ -7,6 +8,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const registerMeIn = (e) => {
     e.preventDefault();
@@ -16,7 +18,8 @@ const Register = () => {
         password
       }
     };
-    dispatch(register(creds))
+    dispatch(register(creds));
+    history.push('/');
   };
 
   return (

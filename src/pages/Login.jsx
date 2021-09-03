@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { login } from "redux/actions/authActions";
 
 const Login = () => {
@@ -7,6 +8,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const logMeIn = (e) => {
     e.preventDefault();
@@ -16,7 +18,8 @@ const Login = () => {
         password
       }
     };
-    dispatch(login(creds))
+    dispatch(login(creds));
+    history.push('/');
   };
 
   return (
