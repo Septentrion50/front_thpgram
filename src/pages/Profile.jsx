@@ -12,6 +12,7 @@ const Profile = () => {
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [isEditing, setIsEditing] = useState(false);
+  const date = new Date(user.attributes.created_at);
 
   const changeInfos = (e) => {
     e.preventDefault();
@@ -69,6 +70,7 @@ const Profile = () => {
           <p>Username: {user.attributes.username}</p>
           <p>Firstname: {user.attributes.firstname}</p>
           <p>Lastname: {user.attributes.lastname}</p>
+          <p>Subscribed on: {date.toLocaleString('en-UK')}</p>
         </div>
       )}
       <button onClick={() => setIsEditing(!isEditing)}>

@@ -1,7 +1,8 @@
-import { GET_POSTS, GET_POST, CREATE_POST, UPDATE_POST, DELETE_POST, POST_FAILURE } from '../actions/postActions';
+import { GET_POSTS, GET_POST, GET_COMMENTS, CREATE_POST, UPDATE_POST, DELETE_POST, POST_FAILURE } from '../actions/postActions';
 
 const initialState = {
   posts: [],
+  comments: [],
   currentPost: {},
   errors: ''
 }
@@ -20,7 +21,12 @@ const postReducer = (state = initialState, action) => {
       return {
         ...state,
         currentPost: action.payload
-      }
+      };
+    case GET_COMMENTS:
+      return {
+        ...state,
+        comments: action.payload
+      };
     case POST_FAILURE:
       return {
         ...state,

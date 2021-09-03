@@ -2,18 +2,20 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getPost } from "redux/actions/postActions";
+import { getPost, getComments } from "redux/actions/postActions";
 
 const Post = () => {
   const { postId } = useParams();
 
   const dispatch = useDispatch();
   const post = useSelector((state) => state.posts.currentPost) || {};
+  const comments = useSelector((state) => state.posts.comments)|| [];
   const [fetchOnce, setFetchOnce] = useState(false);
 
   useEffect(() => {
     if (!fetchOnce) {
       dispatch(getPost(postId));
+      dispatch(getComments(post.id));
       setFetchOnce(true);
     }
   }, [fetchOnce, postId, dispatch]);
@@ -29,8 +31,8 @@ const Post = () => {
         </div>
         <div className="comments">
           <h2>Comments</h2>
-          {post.comments ? (
-            post.comments.map(comment => (
+          {comments === [] ? (
+            comments.map(comment => (
               <div className="comment">
                 <h3>{comment.user}</h3>
                 <p>{comment.content}</p>

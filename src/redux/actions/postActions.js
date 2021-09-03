@@ -2,6 +2,7 @@ import Cookies from "js-cookie";
 
 export const GET_POSTS = 'GET_POSTS';
 export const GET_POST = 'GET_POST';
+export const GET_COMMENTS = 'GET_COMMENTS';
 export const CREATE_POST = 'CREATE_POST';
 export const UPDATE_POST = 'UPDATE_POST';
 export const DELETE_POST = 'DELETE_POST';
@@ -22,6 +23,28 @@ export const getPosts = () => async(dispatch) => {
     dispatch({
       type: POST_FAILURE,
       payload: posts.errors
+    });
+  };
+};
+
+export const getComments = (articleId) => async(dispatch) => {
+  const config = {
+    method: 'GET',
+    headers: {
+      "Authorization": `Bearer ${Cookies.get('token')}`
+    }
+  };
+  const res = await fetch(`http://localhost:3000/articles/${articleId}/comments`, config);
+  const comments = await res.json();
+  if (comments[0].id) {
+    dispatch({
+      type: GET_COMMENTS,
+      payload: comments
+    });
+  } else {
+    dispatch({
+      type: POST_FAILURE,
+      payload: comments
     });
   };
 };
