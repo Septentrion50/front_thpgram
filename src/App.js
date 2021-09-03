@@ -17,7 +17,6 @@ function App() {
 
   const dispatch = useDispatch();
   const posts = useSelector(state => state.posts.posts) || [];
-  const user = useSelector(state => state.auth.user) || {};
   const [fetchOnce, setFetchOnce] = useState(false);
 
   useEffect(() => {
@@ -37,9 +36,7 @@ function App() {
             <Home posts={posts} />
           </Route>
           <PrivateRoute path='/post/:postId' exact component={Post} />
-          <PrivateRoute path='/profile' exact>
-            <Profile user={user} />
-          </PrivateRoute>
+          <PrivateRoute path='/profile' exact component={Profile} />
           <Route path='/login' exact component={Login} />
           <Route path='/register' exact component={Register} />
         </Switch>
