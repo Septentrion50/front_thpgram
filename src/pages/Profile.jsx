@@ -17,9 +17,9 @@ const Profile = () => {
     e.preventDefault();
     const infos = {
       user: {
-        username,
-        firstname,
-        lastname,
+        username: username || user.attributes.username,
+        firstname: firstname || user.attributes.firstname,
+        lastname: lastname || user.attributes.lastname,
       },
     };
     dispatch(updateUser(infos));
