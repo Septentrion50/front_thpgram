@@ -76,7 +76,7 @@ export const getUser = (id) => async(dispatch) => {
   };
   const res = await fetch(`http://localhost:3000/api/users/${id}`, config);
   const user = await res.json();
-  if (user.data.id) {
+  if (user.data) {
     dispatch({
       type: GET_USER,
       payload: user.data,
@@ -84,7 +84,7 @@ export const getUser = (id) => async(dispatch) => {
   } else {
     dispatch({
       type: AUTH_FAILURE,
-      payload: user.errors
+      payload: user
     });
   };
 };
