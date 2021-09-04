@@ -1,13 +1,17 @@
 .home {
-  display: flex;
-  flex-direction: column;
-  padding-left: 4rem;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 2rem;
+  justify-items: center;
+  align-content: center;
+  margin: 4rem;
   width: 30rem;
-  h2 {
-    transition: all .1s linear;
-    border-bottom: .2rem $beige solid;
-  }
-  h2:hover {
-    border-bottom: .2rem $purple solid;
-  }
+}
+
+.post-index {
+  display: flex;
+  width: 30rem;
+  height: 30rem;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

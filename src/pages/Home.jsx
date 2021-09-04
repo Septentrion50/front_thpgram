@@ -7,8 +7,10 @@ const Home = ({ posts }) => {
       <h1>Home</h1>
       {posts.map(post => (
         <Link to={`/post/${post.id}`} key={post.id}>
-          <h2>{post.title}</h2>
-          {post.image_path && <img src={post.image_path} alt={post.title}/>}
+          <div className="post-index" style={{backgroundImage: `url(${post.image_path})`}}>
+            <h2>{post.title}</h2>
+          </div>
+          {/* {post.image_path && <img src={post.image_path} alt={post.title}/>} */}
         </Link>
       ))}
     </div>
