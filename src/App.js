@@ -17,6 +17,7 @@ function App() {
 
   const dispatch = useDispatch();
   const posts = useSelector(state => state.posts.posts) || [];
+  const user = useSelector(state => state.auth.user) || {}; 
   const [fetchOnce, setFetchOnce] = useState(false);
 
   useEffect(() => {
@@ -25,7 +26,7 @@ function App() {
       dispatch(getUser(Cookies.get('id')))
       setFetchOnce(true);
     }
-  }, [fetchOnce, dispatch]);
+  }, [fetchOnce, dispatch, user]);
 
   return (
     <div className="App">

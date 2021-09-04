@@ -1,0 +1,19 @@
+.navbar {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: $purple;
+
+  h1,
+  a {
+    color: $beige;
+    position: relative;
+    transition: all .1s linear;
+    border-bottom: .2rem $purple solid;
+  }
+  a:hover {
+    border-bottom: .2rem $beige solid;
+  }
+
+}

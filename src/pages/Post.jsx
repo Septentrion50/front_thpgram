@@ -39,7 +39,7 @@ const Post = () => {
               </div>
             ))
           ) : (
-            <h2>No comments yet</h2>
+            <h4>No comments yet</h4>
           )}
         </div>
         </>

@@ -1,0 +1,43 @@
+@import './settings.scss';
+@import './navbar.scss';
+@import './home.scss';
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;700&display=swap');
+
+* {
+  font-family: 'Oswald', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: $beige;
+}
+
+h1,
+h2 {
+  font-weight: 600;
+  color: $purple;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+}
+
+p,
+a,
+button {
+  font-weight: 300;
+}
+
+small {
+  font-weight: 200;
+}
+
+a {
+  text-decoration: none;
+  color: $purple;
+}

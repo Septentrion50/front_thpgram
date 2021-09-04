@@ -1,0 +1,13 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  padding-left: 4rem;
+  width: 30rem;
+  h2 {
+    transition: all .1s linear;
+    border-bottom: .2rem $beige solid;
+  }
+  h2:hover {
+    border-bottom: .2rem $purple solid;
+  }
+}

@@ -16,6 +16,7 @@ const Navigation = () => {
 
   return (
     <nav className="navbar">
+      <h1>THPGram</h1>
       <Link to="/">Home</Link>
       {cookie && <Link to="/profile">Profile</Link>}
       {cookie && <Link to="#" onClick={e => logMeOut(e)}>Logout</Link>}
